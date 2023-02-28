@@ -410,7 +410,6 @@ var PinchZoom = /** @class */ (function (_super) {
         height,
         initialZoomFactor,
       );
-      console.log({ initialOffset: this._initialOffset });
     } else {
       this._initialOffset = this._defaultComputeInitialOffset(
         rect,
