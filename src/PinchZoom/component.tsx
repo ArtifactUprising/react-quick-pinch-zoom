@@ -330,7 +330,6 @@ class PinchZoom extends React.Component<Props> {
 
     if (this.props.computeInitialOffset) {
       this._initialOffset = this.props.computeInitialOffset(rect, width, height, initialZoomFactor);
-      console.log({initialOffset: this._initialOffset})
     } else {
       this._initialOffset = this._defaultComputeInitialOffset(rect, width, height, initialZoomFactor);
     }
