@@ -35,6 +35,11 @@ const demos = [
     component: () => import("./props/WheelScaleFactor")
   },
   {
+    id: "prop-computeInitialOffset",
+    title: "computeInitialOffset",
+    component: () => import("./props/ComputeInitialOffset")
+  },
+  {
     id: "prop-tapZoomFactor",
     title: "tapZoomFactor",
     component: () => import("./props/TapZoomFactor")

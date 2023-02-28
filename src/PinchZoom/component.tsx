@@ -132,6 +132,7 @@ class PinchZoom extends React.Component<Props> {
     doubleTapZoomOutOnMaxScale: false,
     // @ts-expect-error
     _document: isSsr ? null : window.document,
+    computeInitialOffset: null,
   };
 
   private _velocity: Point | null;
@@ -325,10 +326,22 @@ class PinchZoom extends React.Component<Props> {
   private _computeInitialOffset() {
     const rect = this._getContainerRect();
     const { width, height } = this._getChildSize();
-    const x = -abs(width * this._getInitialZoomFactor() - rect.width) / 2;
-    const y = -abs(height * this._getInitialZoomFactor() - rect.height) / 2;
+    const initialZoomFactor = this._getInitialZoomFactor();
 
-    this._initialOffset = { x, y };
+    if (this.props.computeInitialOffset) {
+      this._initialOffset = this.props.computeInitialOffset(rect, width, height, initialZoomFactor);
+      console.log({initialOffset: this._initialOffset})
+    } else {
+      this._initialOffset = this._defaultComputeInitialOffset(rect, width, height, initialZoomFactor);
+    }
+
+  }
+
+  private _defaultComputeInitialOffset(rect: DOMRect, width: number, height: number, initialZoomFactor: number): {x: number, y: number} {
+    const x = -abs(width * initialZoomFactor- rect.width) / 2;
+    const y = -abs(height * initialZoomFactor - rect.height) / 2;
+
+    return { x, y };
   }
 
   private _resetOffset() {
@@ -1064,6 +1077,7 @@ if (process.env.NODE_ENV !== 'production') {
     verticalPadding: number,
     zoomOutFactor: number,
     doubleTapZoomOutOnMaxScale: bool,
+    computeInitialOffset: func,
     isTouch: func,
     _document: any,
   };

@@ -42,3 +42,8 @@ button:not([class]) {
 .border-container {
   border: 2px dashed red;
 }
+
+.tall-container {
+  height: 800px;
+  background: linear-gradient(to right, #e100ff, #7f00ff);
+}

@@ -21,6 +21,7 @@
   - [`setOffsetsOnce?: boolean`](#setoffsetsonce-boolean)
   - [`verticalPadding?: number`](#verticalpadding-number)
   - [`horizontalPadding?: number`](#horizontalpadding-number)
+  - [`computeInitialOffset`](#computeInitialOffset)
 - [Event](#event)
   - [`onUpdate({scale: number, x: number, y: number}): void`](#onupdatescale-number-x-number-y-number-void)
   - [`onZoomStart?: () => void`](#onzoomstart---void)
@@ -229,6 +230,21 @@ Callback for drag update event
 ## `onDoubleTap?: () => void`
 
 Callback for `doubletap` event on touch devise or `doubleclick` event on desktop
+
+## `computeInitialOffset`
+
+Override method that controls how the image is offset inside the container
+
+example:
+```js
+
+const computeInitialOffsetAsBottomOfContainer = (rect, width, height, initialZoomFactor) => {
+  const x = -Math.abs(width * initialZoomFactor- rect.width) / 2;
+  const y = -Math.abs(height * initialZoomFactor - rect.height);
+
+  return { x, y };
+}
+```
 
 # Methods
 

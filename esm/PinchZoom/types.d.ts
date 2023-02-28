@@ -1,17 +1,14 @@
 import { ReactElement } from 'react';
-
 export interface UpdateAction {
   x: number;
   y: number;
   scale: number;
 }
-
 export interface AnimateOptions {
   timeFn?: (x: number) => number;
   callback?: () => void;
   duration?: number;
 }
-
 export interface ScaleToOptions {
   x: number;
   y: number;
@@ -19,7 +16,6 @@ export interface ScaleToOptions {
   animated?: boolean;
   duration?: number;
 }
-
 export interface DefaultProps {
   shouldInterceptWheel: (e: WheelEvent) => boolean;
   shouldCancelHandledTouchEndEvents: boolean;
@@ -32,8 +28,17 @@ export interface DefaultProps {
   enabled: boolean;
   horizontalPadding: number;
   lockDragAxis: boolean;
-  computeInitialOffset: ((rect: DOMRect, width: number, height: number, initialZoomFactor: number) => {x: number, y: number}) | null;
-
+  computeInitialOffset:
+    | ((
+        rect: DOMRect,
+        width: number,
+        height: number,
+        initialZoomFactor: number,
+      ) => {
+        x: number;
+        y: number;
+      })
+    | null;
   maxZoom: number;
   minZoom: number;
   onDoubleTap: () => void;
@@ -49,15 +54,10 @@ export interface DefaultProps {
   zoomOutFactor: number;
   doubleTapZoomOutOnMaxScale: boolean;
   isTouch: () => boolean;
-
   _document: Document;
 }
-
 export interface RequiredProps {
   onUpdate: (updateAction: UpdateAction) => void;
   children: ReactElement;
 }
-
-export interface Props extends DefaultProps, RequiredProps {
-  //
-}
+export interface Props extends DefaultProps, RequiredProps {}
