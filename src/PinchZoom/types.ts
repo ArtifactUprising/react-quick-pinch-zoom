@@ -32,6 +32,7 @@ export interface DefaultProps {
   enabled: boolean;
   horizontalPadding: number;
   lockDragAxis: boolean;
+  computeInitialOffset: ((rect: DOMRect, width: number, height: number, initialZoomFactor: number) => {x: number, y: number}) | null;
 
   maxZoom: number;
   minZoom: number;
